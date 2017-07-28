@@ -139,7 +139,6 @@ void CMPOmakePWAD(const char *doomwad, WADTYPE type, const char *PWADname,
     /*open iwad,get iwad directory */
     iwad.ok = 0;
     WADRopenR(&iwad, doomwad);
-
     TXT = TXTopenR(texin, 0);
     WADRopenW(&rwad, PWADname, type, 1);        /* fake IWAD or real PWAD */
     /*
@@ -259,6 +258,7 @@ void CMPOmakePWAD(const char *doomwad, WADTYPE type, const char *PWADname,
     /*
     ** initialise list of patch names
     */
+if (Type == IWAD) {
     if (select & (BTEXTUR | BPATCH)) {
         entry = WADRfindEntry(&iwad, "PNAMES");
         if (entry < 0)
@@ -268,13 +268,16 @@ void CMPOmakePWAD(const char *doomwad, WADTYPE type, const char *PWADname,
         free(EntryP);
         NeedPNAME = false;
     }
+}
     /*
     ** read texture1
     */
     if (select & BTEXTUR) {
+    FoundOne = false;
         if (TXTseekSection(TXT, "TEXTURE1")) {
             Phase("CM50", "Making TEXTURE1");
             TXUinit();
+            if (Type == IWAD) {
             entry = WADRfindEntry(&iwad, "TEXTURE1");
             if (entry >= 0) {
                 EntryP = WADRreadEntry(&iwad, entry, &EntrySz);
@@ -282,7 +285,7 @@ void CMPOmakePWAD(const char *doomwad, WADTYPE type, const char *PWADname,
                 free(EntryP);
             } else
                 Warning("CM51", "Can't find TEXTURE1 in main WAD");
-            FoundOne = false;
+            } else {
             /*read TEXTURES composing TEXTURE1 */
             while (TXTentryParse
                    (name, filenam, &X, &Y, &Repeat, TXT, false) == true) {
@@ -311,6 +314,7 @@ void CMPOmakePWAD(const char *doomwad, WADTYPE type, const char *PWADname,
                     } else
                         ProgError("CM54", "Can't find texture list %s", file);
             }
+            }
             /*write texture */
             if (FoundOne == true) {
                 WADRalign4(&rwad);      /*align entry on int32_t word */
@@ -325,9 +329,11 @@ void CMPOmakePWAD(const char *doomwad, WADTYPE type, const char *PWADname,
     ** read texture2
     */
     if (select & BTEXTUR) {
+    FoundOne = false;
         if (TXTseekSection(TXT, "TEXTURE2")) {
             Phase("CM55", "Making TEXTURE2");
             TXUinit();
+        if (Type == IWAD) {
             entry = WADRfindEntry(&iwad, "TEXTURE2");
             if (entry >= 0) {
                 EntryP = WADRreadEntry(&iwad, entry, &EntrySz);
@@ -335,7 +341,7 @@ void CMPOmakePWAD(const char *doomwad, WADTYPE type, const char *PWADname,
                 free(EntryP);
             } else
                 Warning("CM56", "Can't find TEXTURE2 in main WAD");
-            FoundOne = false;
+        } else {
             /*read TEXTURES composing TEXTURE2 */
             while (TXTentryParse
                    (name, filenam, &X, &Y, &Repeat, TXT, false) == true) {
@@ -363,6 +369,7 @@ void CMPOmakePWAD(const char *doomwad, WADTYPE type, const char *PWADname,
                         WADRclose(&pwad);
                     } else
                         ProgError("CM59", "Can't find texture list %s", file);
+            }
             }
             /*write texture */
             if (FoundOne == true) {
