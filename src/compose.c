@@ -313,7 +313,7 @@ if (Type == IWAD) {
                         WADRclose(&pwad);
                     } else
                         ProgError("CM54", "Can't find texture list %s", file);
-            }
+                }
             }
             /*write texture */
             if (FoundOne == true) {
@@ -323,7 +323,7 @@ if (Type == IWAD) {
                 WADRdirAddEntry(&rwad, start, size, "TEXTURE1");
             }
             TXUfree();
-        }
+    }
     }
     /*
     ** read texture2
@@ -379,7 +379,7 @@ if (Type == IWAD) {
                 WADRdirAddEntry(&rwad, start, size, "TEXTURE2");
             }
             TXUfree();
-        }
+    }
     }
     /*
     ** PNAME
