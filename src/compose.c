@@ -26,7 +26,7 @@ static void AddSomeJunk(const char *file);
 ** a texture list for future modifications
 */
 extern char file[128];
-
+static WADTYPE Type;
 /*
 ** make a PWAD from creation directives
 ** load levels,lumps,
