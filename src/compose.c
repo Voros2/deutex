@@ -276,7 +276,7 @@ void CMPOmakePWAD(const char *doomwad, WADTYPE type, const char *PWADname,
         if (TXTseekSection(TXT, "TEXTURE1")) {
             Phase("CM50", "Making TEXTURE1");
             TXUinit();
-            if (Type == IWAD) {
+            if (Type == PWAD) {
                 entry = WADRfindEntry(&iwad, "TEXTURE1");
                 if (entry >= 0) {
                     EntryP = WADRreadEntry(&iwad, entry, &EntrySz);
@@ -332,7 +332,7 @@ void CMPOmakePWAD(const char *doomwad, WADTYPE type, const char *PWADname,
         if (TXTseekSection(TXT, "TEXTURE2")) {
             Phase("CM55", "Making TEXTURE2");
             TXUinit();
-            if (Type == IWAD) {
+            if (Type == PWAD) {
                 entry = WADRfindEntry(&iwad, "TEXTURE2");
                 if (entry >= 0) {
                     EntryP = WADRreadEntry(&iwad, entry, &EntrySz);
