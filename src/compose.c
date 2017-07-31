@@ -292,24 +292,9 @@ void CMPOmakePWAD(const char *doomwad, WADTYPE type, const char *PWADname,
                     TXUreadTexFile(file, true);
                     NeedPNAME = true;
                     FoundOne = true;
-                } else
-                    if (MakeFileName
-                        (file, DataDir, "TEXTURES", "", name,
-                         "WAD") == true) {
-                        Detail("CM53", "Reading texture WAD %s", fname(file));
-                        WADRopenR(&pwad, file);
-                        entry = WADRfindEntry(&pwad, "TEXTURE1");
-                        if (entry >= 0) {
-                            EntryP = WADRreadEntry(&pwad, entry, &EntrySz);
-                            TXUreadTEXTURE("TEXTURE1", EntryP, EntrySz, NULL,
-                                           0, true);
-                            free(EntryP);
-                            NeedPNAME = true;
-                            FoundOne = true;
-                        }
-                        WADRclose(&pwad);
-                    } else
-                        ProgError("CM54", "Can't find texture list %s", file);
+                } else {
+                    ProgError("CM54", "Can't find texture list %s", file);
+                }
             }
             /*write texture */
             if (FoundOne == true) {
@@ -345,24 +330,9 @@ void CMPOmakePWAD(const char *doomwad, WADTYPE type, const char *PWADname,
                     TXUreadTexFile(file, true);
                     NeedPNAME = true;
                     FoundOne = true;
-                } else
-                    if (MakeFileName
-                        (file, DataDir, "TEXTURES", "", name,
-                         "WAD") == true) {
-                        Detail("CM58", "Reading texture WAD %s", fname(file));
-                        WADRopenR(&pwad, file);
-                        entry = WADRfindEntry(&pwad, "TEXTURE2");
-                        if (entry >= 0) {
-                            EntryP = WADRreadEntry(&pwad, entry, &EntrySz);
-                            TXUreadTEXTURE("TEXTURE2", EntryP, EntrySz, NULL,
-                                           0, true);
-                            free(EntryP);
-                            NeedPNAME = true;
-                            FoundOne = true;
-                        }
-                        WADRclose(&pwad);
-                    } else
-                        ProgError("CM59", "Can't find texture list %s", file);
+                } else {
+                    ProgError("CM59", "Can't find texture list %s", file);
+                }
             }
             /*write texture */
             if (FoundOne == true) {
