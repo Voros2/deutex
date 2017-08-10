@@ -664,8 +664,7 @@ static void IDENTdirMusics(ENTRY * ids, struct WADINFO *info, bool Check)
                     && WADRreadShort(info) == 0x1A53) {
                     IDENTsetType(ids, info, n, EMUS);
                 }
-                WADRseek(info, info->dir[n].start);
-                if (WADRreadShort(info) == 0x544D
+                else if (WADRreadShort(info) == 0x544D
                     && WADRreadShort(info) == 0x6468) {
                     IDENTsetType(ids, info, n, EMIDI);
                 }
