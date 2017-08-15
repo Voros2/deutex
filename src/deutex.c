@@ -647,10 +647,6 @@ void COMusedidx(int argc, const char *argv[])
 {
     const char *wadinf, *wadin;
     cusage_t *cusage = NULL;
-    if (WadInfOk == false) {
-        /* Not used anyway */
-        MakeFileName(WadInf, DataDir, "", "", "WADINFO", "TXT");
-    }
     if (argc <= 1) {
         wadin = MainWAD;
     } else {
