@@ -553,7 +553,11 @@ void XTRextractWAD(const char *doomwad, const char *DataDir, const char
     ** GRAPHICS
     */
     if (select & BGRAPHIC) {
-        Phase("EX35", "Extracting graphics...");
+        if ((cusage != NULL) == false) {
+            Phase("EX35", "Extracting graphics...");
+        } else {
+            Phase("UX01", "Reading graphics...");
+        }
         ostart = 0x80000000L;
         osize = 0;
         for (EntryFound = false, p = 0; p < pnb; p++) {
@@ -620,7 +624,11 @@ void XTRextractWAD(const char *doomwad, const char *DataDir, const char
     ** SPRITES
     */
     if (select & BSPRITE) {
-        Phase("EX40", "Extracting sprites...");
+        if ((cusage != NULL) == false) {
+            Phase("EX40", "Extracting sprites...");
+        } else {
+            Phase("UX02", "Reading sprites...");
+        }
         ostart = 0x80000000L;
         osize = 0;
         for (EntryFound = false, p = 0; p < pnb; p++) {
@@ -659,7 +667,11 @@ void XTRextractWAD(const char *doomwad, const char *DataDir, const char
     ** PATCHES
     */
     if (select & BPATCH) {
-        Phase("EX45", "Extracting patches...");
+        if ((cusage != NULL) == false) {
+            Phase("EX45", "Extracting patches...");
+        } else {
+            Phase("UX03", " Reading patches...");
+        }
         for (EntryFound = false, p = 0; p < pnb; p++) {
             if ((piden[p] & EMASK) == EPATCH) {
                 if (EntryFound != true) {
@@ -692,7 +704,11 @@ void XTRextractWAD(const char *doomwad, const char *DataDir, const char
     ** FLATS
     */
     if (select & BFLAT) {
-        Phase("EX50", "Extracting flats...");
+        if ((cusage != NULL) == false) {
+            Phase("EX50", "Extracting flats...");
+        } else {
+            Phase("UX05", "Reading flats...");
+        }
         ostart = 0x80000000L;
         osize = 0;
         for (EntryFound = false, p = 0; p < pnb; p++) {
@@ -729,7 +745,11 @@ void XTRextractWAD(const char *doomwad, const char *DataDir, const char
     /* Extract all sneaps */
     if (select & BSNEAP) {
         ENTRY type = ESNEAP;
-        Phase("EX55", "Extracting %s...", entry_type_plural(type));
+        if ((cusage != NULL) == false) {
+            Phase("EX55", "Extracting %s...", entry_type_plural(type));
+        } else {
+            Phase("UX06", " Reading %s...", entry_type_plural(type));
+        }
         ostart = 0x80000000L;
         osize = 0;
 
@@ -773,7 +793,11 @@ void XTRextractWAD(const char *doomwad, const char *DataDir, const char
     /* Extract all sneats */
     if (select & BSNEAT) {
         ENTRY type = ESNEAT;
-        Phase("EX60", "Extracting %s...", entry_type_plural(type));
+        if ((cusage != NULL) == false) {
+            Phase("EX60", "Extracting %s...", entry_type_plural(type));
+        } else {
+            Phase("UX07", "Reading %s...", entry_type_plural(type));
+        }
         ostart = 0x80000000L;
         osize = 0;
 
